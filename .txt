@@ -1,0 +1,60 @@
+Tes 1 — Super Admin
+
+Login:
+
+Email: superadmin@gmail.com
+Password: 1234
+
+Harus melihat:
+
+Dashboard
+
+Monitoring
+- Update Unit A2B
+- Input Manual Unit Hauler
+- Riwayat Status
+
+Master Data
+- Aktivitas Unit
+- Jenis Unit
+- Lokasi Unit
+- Proyek
+- Unit
+Tes 2 — Operation
+
+Login:
+
+Email: admin@gmail.com
+Password: 1234
+
+Harus melihat:
+
+Dashboard
+
+Monitoring
+- Update Unit A2B
+- Riwayat Status
+
+Operation tidak boleh melihat:
+
+Input Manual Unit Hauler
+Master Data
+Tes 3 — Manager Viewer
+
+Login:
+
+Email: viewer@gmail.com
+Password: 1234
+
+Harus melihat:
+
+Dashboard
+
+Monitoring
+- Riwayat Status
+
+Manager Viewer tidak boleh melihat:
+
+Update Unit A2B
+Input Manual Unit Hauler
+Master Data
