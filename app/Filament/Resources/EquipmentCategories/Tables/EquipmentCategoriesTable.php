@@ -14,33 +14,32 @@ class EquipmentCategoriesTable
     {
         return $table
             ->columns([
+                TextColumn::make('row_number')
+                    ->label('No')
+                    ->rowIndex()
+                    ->alignCenter(),
 
                 TextColumn::make('name')
                     ->label('Jenis Unit')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->weight('bold'),
 
                 TextColumn::make('created_at')
                     ->label('Tanggal Dibuat')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
-
             ])
-
             ->defaultSort('created_at', 'desc')
             ->recordActions([
-
                 EditAction::make()
                     ->label('Edit'),
-
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make()
                         ->label('Hapus'),
-
                 ]),
-
             ]);
     }
 }

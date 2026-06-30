@@ -15,31 +15,36 @@ class UnitsTable
     {
         return $table
             ->columns([
-                TextColumn::make('project.name')
-                    ->label('Project')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('unit_group')
-                    ->label('Kelompok')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'A2B' => 'info',
-                        'HAULER' => 'warning',
-                        default => 'gray',
-                    })
-                    ->sortable(),
-
-                TextColumn::make('equipmentCategory.name')
-                    ->label('Jenis Unit')
-                    ->searchable()
-                    ->sortable(),
+                TextColumn::make('row_number')
+                    ->label('No')
+                    ->rowIndex()
+                    ->alignCenter(),
 
                 TextColumn::make('unit_code')
                     ->label('Nomor Lambung')
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
+
+                TextColumn::make('unit_group')
+                    ->label('Kelompok')
+                    ->badge()
+                    ->color(fn (?string $state): string => match ($state) {
+                        'A2B' => 'info',
+                        'HAULER' => 'warning',
+                        default => 'gray',
+                    })
+                    ->sortable(),
+
+                TextColumn::make('project.name')
+                    ->label('Project')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('equipmentCategory.name')
+                    ->label('Jenis Unit')
+                    ->searchable()
+                    ->sortable(),
 
                 TextColumn::make('current_status')
                     ->label('Status')
@@ -51,7 +56,8 @@ class UnitsTable
                         'STS NO OP' => 'gray',
                         'NO INFO' => 'secondary',
                         default => 'secondary',
-                    }),
+                    })
+                    ->sortable(),
 
                 TextColumn::make('activity.name')
                     ->label('Aktivitas')
@@ -83,6 +89,16 @@ class UnitsTable
                 IconColumn::make('is_active')
                     ->label('Aktif')
                     ->boolean(),
+
+                TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime('d M Y H:i')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('updated_at')
+                    ->label('Diubah')
+                    ->dateTime('d M Y H:i')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('updated_at', 'desc')
             ->recordActions([

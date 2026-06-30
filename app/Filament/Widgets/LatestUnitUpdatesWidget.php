@@ -29,6 +29,11 @@ class LatestUnitUpdatesWidget extends BaseWidget
                     ->where('is_active', true)
             )
             ->columns([
+                TextColumn::make('row_number')
+                    ->label('No')
+                    ->rowIndex()
+                    ->alignCenter(),
+
                 TextColumn::make('unit_code')
                     ->label('No Unit')
                     ->searchable()

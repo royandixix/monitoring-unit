@@ -13,40 +13,38 @@ class ProjectsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->columns([
+                TextColumn::make('row_number')
+                    ->label('No')
+                    ->rowIndex()
+                    ->alignCenter(),
 
-        ->columns([
+                TextColumn::make('name')
+                    ->label('Nama Proyek')
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
 
-            TextColumn::make('name')
-                ->label('Nama Proyek')
-                ->searchable()
-                ->sortable(),
+                TextColumn::make('description')
+                    ->label('Deskripsi')
+                    ->placeholder('Belum ada deskripsi')
+                    ->limit(50),
 
-            TextColumn::make('description')
-                ->label('Deskripsi')
-                ->limit(50),
-
-            TextColumn::make('created_at')
-                ->label('Dibuat')
-                ->dateTime('d M Y')
-                ->sortable(),
-
-        ])
-
-        ->actions([
-            EditAction::make()
-                ->label('Edit'),
-        ])
-
-        ->bulkActions([
-
-            BulkActionGroup::make([
-
-                DeleteBulkAction::make()
-                    ->label('Hapus'),
-
-            ]),
-
-        ]);
-
+                TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime('d M Y H:i')
+                    ->sortable(),
+            ])
+            ->defaultSort('created_at', 'desc')
+            ->recordActions([
+                EditAction::make()
+                    ->label('Edit'),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->label('Hapus'),
+                ]),
+            ]);
     }
 }

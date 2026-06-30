@@ -11,11 +11,26 @@ class UnitStatusLogsTable
     {
         return $table
             ->columns([
+                TextColumn::make('row_number')
+                    ->label('No')
+                    ->rowIndex()
+                    ->alignCenter(),
+
                 TextColumn::make('unit.unit_code')
                     ->label('Nomor Lambung')
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
+
+                TextColumn::make('unit.unit_group')
+                    ->label('Kelompok')
+                    ->badge()
+                    ->color(fn (?string $state): string => match ($state) {
+                        'A2B' => 'info',
+                        'HAULER' => 'warning',
+                        default => 'gray',
+                    })
+                    ->sortable(),
 
                 TextColumn::make('project.name')
                     ->label('Project')
@@ -28,6 +43,7 @@ class UnitStatusLogsTable
 
                 TextColumn::make('activity.name')
                     ->label('Aktivitas')
+                    ->placeholder('Belum diisi')
                     ->searchable(),
 
                 TextColumn::make('status')
@@ -44,15 +60,18 @@ class UnitStatusLogsTable
 
                 TextColumn::make('position')
                     ->label('Posisi')
+                    ->placeholder('Belum diisi')
                     ->searchable(),
 
                 TextColumn::make('start_bd')
                     ->label('Start BD')
                     ->dateTime('d M Y H:i')
+                    ->placeholder('-')
                     ->sortable(),
 
                 TextColumn::make('user.name')
                     ->label('PIC')
+                    ->placeholder('Belum ada PIC')
                     ->searchable(),
 
                 TextColumn::make('created_at')
